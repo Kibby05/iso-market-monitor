@@ -1,0 +1,5 @@
+zlib
+xmlsec
+requests
+lxml
+pyyaml

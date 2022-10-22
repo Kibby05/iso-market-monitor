@@ -1,0 +1,105 @@
+---
+  openssl_path:     /usr/bin/openssl
+  logfile:          ./caiso-b2b.log
+
+  # URL's for CAISO sites
+  caiso_sites:
+    webservices:
+      mapstage: https://wsmap.caiso.com
+      stage:    https://wsstage.caiso.com
+      prod:     https://ws.caiso.com
+    ads:
+      mapstage: https://wsmap.caiso.com
+      mapstage: https://wsmap.caiso.com
+      prod:     https://ws.caiso.com
+
+  # Note: WSSE config is an external file here as it contains passwords and cert names and we do not want that to be shared
+  # This config also includes the location of the trusted.pem file
+  # This will load in all the wsse_profiles
+  wsse_config_file:    /app/caisoapi/caisopy-b2b/caiso-b2b-wsse-config.yml
+
+  # This is for calling scripts after we receive the results back -- this is where we hook in our custom business logic, etc ...
+  postproc_profiles:
+    cmri_eir:
+      scripts:          /this/that/theother
+
+  services:
+    submitEIMDynamicLimitData_v2:
+      app:              BAAOP
+      caiso_site:       webservices
+      wsse_profile:     baaop
+      endpoint:         sst/baaop/SubmitEIMDynamicLimitData_RTMv2_AP
+      soapaction:       http://www.caiso.com/soa/submitEIMDynamicLimitData_v2
+      attachment_file:  samples/submitEIMDynamicLimitData_v2.xml
+    submitDynamicLimitData_v1:
+      app:              BAAOP
+      caiso_site:       webservices
+      wsse_profile:     baaop
+      endpoint:         sst/baaop/SubmitDynamicLimitData_RTMv1_AP
+      soapaction:       http://www.caiso.com/soa/submitDynamicLimitData_v1
+      attachment_file:  samples/submitDynamicLimitData_v1.xml
+    retrieveRawBidSet_v4:
+      app:              SIBR
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/sibr/RetrieveCleanBidSet_SIBRv4_AP
+      soapaction:       http://www.caiso.com/soa/retrieveCleanBidSet_v4
+      request_body:     ./request_bodies/retrieveRawBidSet_v4
+    retrieveRawBidSet_v4_DocAttach:
+      app:              SIBR
+      caiso_site:       ads
+      wsse_profile:     ptest1
+      endpoint:         sst/sibr/RetrieveCleanBidSet_SIBRv4_DocAttach_AP
+      soapaction:       http://www.caiso.com/soa/retrieveCleanBidSet_v4_DocAttach
+      request_body:     ./request_bodies/retrieveRawBidSet_v4_DocAttach
+    retrieveCurrentBidResults_v4:
+      app:              SIBR
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/sibr/RetrieveCurrentBidResults_SIBRv4_AP
+      soapaction:       http://www.caiso.com/soa/retrieveCurrentBidResults_v4
+      request_body:     ./request_bodies/retrieveCurrentBidResults_v4 
+    retrieveFinalTradeSet:
+      app:              SIBR
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/sibr/RetrieveFinalTradeSet_SIBR_AP
+      soapaction:       http://www.caiso.com/soa/2008-08-09/retrieveFinalTradeSet
+      request_body:     ./request_bodies/retrieveFinalTradeSet 
+    submitRawBidSet_v4:
+      app:              SIBR
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/sibr/SubmitRawBidSet_SIBRv4_AP
+      soapaction:       http://www.caiso.com/soa/submitRawBidSet_v4
+      request_body:     <submitRawBidSet_v4 xmlns="http://www.caiso.com/soa/submitRawBidSet_v4"><rawBidSet_attachment href=""></rawBidSet_attachment></submitRawBidSet_v4>
+      attachment_file:  samples/submitRawBidSet_v4.xml
+    submitRawBidSet_v4_DocAttach:
+      app:              SIBR
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/sibr/SubmitRawBidSet_SIBRv4_DocAttach_AP
+      soapaction:       http://www.caiso.com/soa/submitRawBidSet_v4_DocAttach
+      attachment_file:  samples/submitRawBidSet_v4.xml
+    submitDRLocations_v2:
+      app:              DRRS
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/drrs/SubmitDRLocations_DRRSv2_AP
+      soapaction:       http://www.caiso.com/soa/submitDRLocations_v2
+      attachment_file:  samples/submitDRLocations_v2.xml
+    retrieveEIRForecast_v1:
+      app:              CMRI
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/cmri/RetrieveEIRForecast_CMRIv1_AP
+      soapaction:       http://www.caiso.com/soa/retrieveEIRForecast_v1
+      request_body:     ./request_bodies/retrieveEIRForecast_v1
+    retrieveEIRForecast_v1_DocAttach:
+      app:              CMRI
+      caiso_site:       webservices
+      wsse_profile:     ptest1
+      endpoint:         sst/cmri/RetrieveEIRForecast_CMRIv1_DocAttach_AP
+      postproc_profile: cmri
+      soapaction:       http://www.caiso.com/soa/retrieveEIRForecast_v1_DocAttach
+      request_body:     ./request_bodies/retrieveEIRForecast_v1_DocAttach 

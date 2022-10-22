@@ -1,0 +1,10 @@
+---
+wsse_profiles:
+  sibr1:
+    username:         sibr1
+    cert_file:        /path/to/cert/sibr.pfx
+    cert_pass:        pass123
+  cmriRO:
+    username:         cmri12345
+    cert_file:        /path/to/cert/cmri.pfx
+    cert_pass:        pass123

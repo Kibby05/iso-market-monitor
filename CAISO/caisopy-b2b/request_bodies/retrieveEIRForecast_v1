@@ -1,0 +1,15 @@
+<RequestResourceForecast>
+    <MessageHeader>
+        <TimeDate>2021-06-14T06:59:59Z</TimeDate>
+        <Source>CMRI</Source>
+        <Version>v20140401</Version>
+    </MessageHeader>
+    <MessagePayload>
+        <RequestResourceForecastRecord>
+            <dateTimeEnd>2021-06-07T06:00:00Z</dateTimeEnd>
+            <dateTimeStart>2021-06-07T07:00:00Z</dateTimeStart>
+            <eligibleIntermittentResForcKind>HARolling</eligibleIntermittentResForcKind>
+            <schedulingCoordinator>CISO</schedulingCoordinator>
+        </RequestResourceForecastRecord>
+    </MessagePayload> 
+</RequestResourceForecast>

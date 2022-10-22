@@ -1,0 +1,9 @@
+<retrieveCleanBidSet_v4 xmlns="http://www.caiso.com/soa/retrieveCleanBidSet_v4">
+    <RequestCleanBidSet xmlns="http://www.caiso.com/soa/2008-05-21/RequestCleanBidSet.xsd">
+        <Bid_MarketTimeInterval>
+            <MarketStartTime>2021-06-14T10:00:00.0Z</MarketStartTime>
+            <MarketEndTime>2021-06-14T11:00:00.0Z</MarketEndTime>
+            <marketType>RTM</marketType>
+        </Bid_MarketTimeInterval>
+    </RequestCleanBidSet>
+</retrieveCleanBidSet_v4>
